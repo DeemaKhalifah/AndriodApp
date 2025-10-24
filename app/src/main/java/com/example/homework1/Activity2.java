@@ -14,7 +14,7 @@ import dal.Product;
 import dal.productDaMockup;
 
 public class Activity2 extends AppCompatActivity {
-    EditText editName, editPrice;
+    EditText edtName, edtPrice,edtQuantity;
     Button btnSave;
     int index;
     Product product;
@@ -25,26 +25,32 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
-        editName = findViewById(R.id.edtName);
-        editPrice = findViewById(R.id.edtPrice);
+        edtName = findViewById(R.id.edtName);
+        edtPrice = findViewById(R.id.edtPrice);
+        edtQuantity = findViewById(R.id.edtQantity);
         btnSave = findViewById(R.id.btnSave);
 
         index = getIntent().getIntExtra("index", -1);
         product = da.getAllProducts().get(index);
 
-        // Show current product info
-        editName.setText(product.getName());
-        editPrice.setText(String.valueOf(product.getPrice()));
+
+        edtName.setText(product.getName());
+        edtPrice.setText(String.valueOf(product.getPrice()));
+        edtQuantity.setText(String.valueOf(product.getQuantity()));
+
 
         btnSave.setOnClickListener(v -> {
-            String newName = editName.getText().toString();
-            double newPrice = Double.parseDouble(editPrice.getText().toString());
+            String newName = edtName.getText().toString();
+            double newPrice = Double.parseDouble(edtPrice.getText().toString());
+            int newQuantity = Integer.parseInt(edtQuantity.getText().toString());
+
 
             product.setName(newName);
             product.setPrice(newPrice);
+            product.setQuantity(newQuantity);
 
 
-            finish(); // go back to MainActivity
+            finish();
         });
 
 

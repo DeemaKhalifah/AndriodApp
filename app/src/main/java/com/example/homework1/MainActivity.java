@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh list when returning from DetailActivity
         adapter.notifyDataSetChanged();
     }
 }
